@@ -32,12 +32,12 @@ const Navbar = () => {
     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
   >
     <li>
-      <a className="justify-between">
+      <Link to = '/createassignmentpage' className="justify-between">
         Create Assignment
        
-      </a>
+      </Link >
     </li>
-    <li><a>Pending Assignment</a></li>
+    <li><a>My Attempted Assignments</a></li>
     <li><a>Logout</a></li>
   </ul>
 </div>

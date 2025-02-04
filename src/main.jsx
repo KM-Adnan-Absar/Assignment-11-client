@@ -4,14 +4,17 @@ import './index.css'
 import Home from './pages/Home';
 import MainLayout from './layout/MainLayout';
 import AuthProvider from './Providers/AuthProvider';
+import ErrorPage from './pages/ErrorPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ErrorPage from './pages/ErrorPage';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import CreateAssignmentPage from './pages/CreateAssignmentPage';
+import PrivateRoute from './Providers/PrivateRoute';
+
 
 
 
@@ -32,7 +35,11 @@ const router = createBrowserRouter([
      {
       path: '/register',
       element: <Register></Register>
-     }
+     },
+     {
+      path: '/createassignmentpage',
+      element: <PrivateRoute><CreateAssignmentPage></CreateAssignmentPage></PrivateRoute>
+     },
     ]
   },
 ]);
