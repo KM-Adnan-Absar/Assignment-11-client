@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import CreateAssignmentPage from './pages/CreateAssignmentPage';
 import PrivateRoute from './Providers/PrivateRoute';
+import AttemptedAssignment from './pages/AttemptedAssignment';
 
 
 
@@ -40,6 +41,12 @@ const router = createBrowserRouter([
       path: '/createassignmentpage',
       element: <PrivateRoute><CreateAssignmentPage></CreateAssignmentPage></PrivateRoute>
      },
+     
+      {
+        path: '/attemptedassignment',
+        element: <PrivateRoute><AttemptedAssignment></AttemptedAssignment></PrivateRoute>
+       },
+     
     ]
   },
 ]);
