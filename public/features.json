@@ -1,0 +1,33 @@
+[
+    {
+      "title": "Create Assignments",
+      "description": "Easily create assignments for your study group, set deadlines, and specify the difficulty level to manage workload effectively.",
+      "image": "https://i.imgur.com/ihBiMN7.jpeg"
+    },
+    {
+      "title": "Submit & Review",
+      "description": "Submit your assignments for peer review and provide constructive feedback to your friends, helping each other grow.",
+         "image": "https://i.imgur.com/IvxjFzT.png"
+    },
+    {
+      "title": "Group Collaboration",
+      "description": "Collaborate with your study group, discuss assignments, and share resources to improve your learning experience together.",
+       "image": "https://i.imgur.com/c4wDPoR.jpeg"
+    },
+    {
+      "title": "Track Progress",
+      "description": "Track the status of your assignments and see which ones are completed, pending, or in review, all in one place.",
+      "image": "https://i.imgur.com/2jyRGb1.jpeg"
+    },
+    {
+      "title": "Real-Time Notifications",
+      "description": "Get notified about assignment deadlines, new submissions, and reviews to stay on top of your tasks and deadlines.",
+   "image": "https://i.imgur.com/ZqETbPh.jpeg"
+    },
+    {
+      "title": "Mark Assignments",
+      "description": "Evaluate your peers' assignments, provide feedback, and assign marks based on the quality of their submissions.",
+     "image": "https://i.imgur.com/brUBmlB.jpeg"
+    }
+  ]
+  
