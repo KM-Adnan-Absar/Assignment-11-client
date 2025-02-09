@@ -30,7 +30,7 @@ const CreateAssignment = () => {
     };
 
     try {
-      const response = await fetch("https://your-server.com/api/assignments", {
+      const response = await fetch("http://localhost:3000/create-assignment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

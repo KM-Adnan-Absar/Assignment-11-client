@@ -7,8 +7,8 @@ return (
       {/* Background Image */}
       <img className="w-full h-full object-cover " src={banner} alt="Banner" />
 
-      {/* Text Over Image */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+        {/* Text Over Image */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
         <h1 className="text-5xl font-extrabold mb-4 drop-shadow-lg">
           Collaborate. Learn. Succeed.
         </h1>
