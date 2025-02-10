@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const GiveMarks = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext); // Get logged-in user
   const [assignment, setAssignment] = useState(null);
   const [marks, setMarks] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -56,6 +58,9 @@ const GiveMarks = () => {
 
   if (!assignment) return <p>Loading...</p>;
 
+  // ❌ Prevent user from marking their own assignment
+  const isOwnAssignment = user?.email === assignment.userEmail;
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Give Marks</h2>
@@ -73,30 +78,36 @@ const GiveMarks = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-4">
-        <div className="mb-2">
-          <label className="block font-bold">Marks:</label>
-          <input
-            type="number"
-            value={marks}
-            onChange={(e) => setMarks(e.target.value)}
-            className="border p-2 w-full rounded"
-          />
-        </div>
+      {isOwnAssignment ? (
+        <p className="mt-4 text-red-500 font-bold">
+          ❌ You cannot mark your own assignment.
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit} className="mt-4">
+          <div className="mb-2">
+            <label className="block font-bold">Marks:</label>
+            <input
+              type="number"
+              value={marks}
+              onChange={(e) => setMarks(e.target.value)}
+              className="border p-2 w-full rounded"
+            />
+          </div>
 
-        <div className="mb-2">
-          <label className="block font-bold">Feedback:</label>
-          <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            className="border p-2 w-full rounded"
-          />
-        </div>
+          <div className="mb-2">
+            <label className="block font-bold">Feedback:</label>
+            <textarea
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              className="border p-2 w-full rounded"
+            />
+          </div>
 
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
-          Submit Marks
-        </button>
-      </form>
+          <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+            Submit Marks
+          </button>
+        </form>
+      )}
     </div>
   );
 };
