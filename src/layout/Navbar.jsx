@@ -58,7 +58,7 @@ draggable: true
   user ? <div className="w-10 rounded-full">
    
   <img
-  
+ 
     alt="User Profile"
     src={img}
   />
@@ -84,6 +84,7 @@ draggable: true
       </Link >
     </li>
     <li><Link to = 'attemptedassignment'>My Attempted Assignments</Link></li>
+    <li><Link to = '/pendingAssignment'>Pending Assignments</Link></li>
     <li><a onClick={handleSignOutUser}>Logout</a></li>
   </ul>
 </div>

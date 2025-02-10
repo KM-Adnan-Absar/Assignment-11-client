@@ -7,17 +7,17 @@ import AuthProvider from './Providers/AuthProvider';
 import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreateAssignmentPage from './pages/CreateAssignmentPage';
+import PrivateRoute from './Providers/PrivateRoute';
+import AttemptedAssignment from './pages/AttemptedAssignment';
+import AssignmentsPage from './pages/AssignmentPage';
+import PendingAssignment from './pages/PendingAssignment';
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import CreateAssignmentPage from './pages/CreateAssignmentPage';
-import PrivateRoute from './Providers/PrivateRoute';
-import AttemptedAssignment from './pages/AttemptedAssignment';
-
-
-
+import GiveMarks from './pages/GiveMarks';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +46,18 @@ const router = createBrowserRouter([
         path: '/attemptedassignment',
         element: <PrivateRoute><AttemptedAssignment></AttemptedAssignment></PrivateRoute>
        },
+       {
+        path: '/assignmentPage',
+        element: <AssignmentsPage></AssignmentsPage>
+       },
+       {
+        path: '/pendingAssignment',
+        element: <PrivateRoute><PendingAssignment></PendingAssignment></PrivateRoute>
+       },
+       {
+        path:'/give-marks/:id',
+        element:<GiveMarks></GiveMarks>
+       }
      
     ]
   },

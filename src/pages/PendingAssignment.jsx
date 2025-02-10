@@ -1,35 +1,35 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
-const SubmittedAssignments = () => {
+const PendingAssignments = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    const fetchSubmittedAssignments = async () => {
+    const fetchPendingAssignments = async () => {
+      if (!user) return;
+
       try {
         const response = await fetch("http://localhost:3000/submitAssignment");
         const data = await response.json();
 
-        // Show only submitted assignments (status: "Submitted")
-        const submittedAssignments = data.filter(
-          (assignment) => assignment.status === "Submitted"
+        // Filter only pending assignments (exclude marked assignments)
+        const pendingAssignments = data.filter(
+          (assignment) => assignment.obtainedMarks === null
         );
 
-        setAssignments(submittedAssignments);
+        setAssignments(pendingAssignments);
       } catch (error) {
         console.error("Error fetching assignments:", error);
       }
     };
 
-    fetchSubmittedAssignments();
-  }, []);
+    fetchPendingAssignments();
+  }, [user]);
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Submitted Assignments</h2>
+      <h2 className="text-2xl font-bold mb-4">Pending Assignments</h2>
 
       {assignments.length > 0 ? (
         <div className="overflow-x-auto">
@@ -38,10 +38,9 @@ const SubmittedAssignments = () => {
               <tr className="bg-gray-200">
                 <th className="border p-2">Id</th>
                 <th className="border p-2">Title</th>
-                <th className="border p-2">Examinee Name</th>
+                <th className="border p-2">User Email</th>
                 <th className="border p-2">Total Marks</th>
                 <th className="border p-2">Status</th>
-                <th className="border p-2">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -52,24 +51,16 @@ const SubmittedAssignments = () => {
                   <td className="border p-2">{assignment.userEmail}</td>
                   <td className="border p-2">{assignment.totalMarks}</td>
                   <td className="border p-2 text-red-500 font-semibold">{assignment.status}</td>
-                  <td className="border p-2">
-                    <button
-                      onClick={() => navigate(`/give-marks/${assignment._id}`)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded"
-                    >
-                      Give Mark
-                    </button>
-                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : (
-        <p className="text-gray-600">No submitted assignments found.</p>
+        <p className="text-gray-600">No pending assignments found.</p>
       )}
     </div>
   );
 };
 
-export default SubmittedAssignments;
+export default PendingAssignments;
