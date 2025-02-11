@@ -1,35 +1,35 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
-const SubmittedAssignments = () => {
+const MyAssignments = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    const fetchSubmittedAssignments = async () => {
+    const fetchUserAssignments = async () => {
       try {
         const response = await fetch("http://localhost:3000/submitAssignment");
         const data = await response.json();
 
-        // Show only submitted assignments (status: "Submitted")
-        const submittedAssignments = data.filter(
-          (assignment) => assignment.status === "Submitted"
+        // Filter assignments submitted by the logged-in user
+        const userAssignments = data.filter(
+          (assignment) => assignment.userEmail === user.email
         );
 
-        setAssignments(submittedAssignments);
+        setAssignments(userAssignments);
       } catch (error) {
         console.error("Error fetching assignments:", error);
       }
     };
 
-    fetchSubmittedAssignments();
-  }, []);
+    if (user?.email) {
+      fetchUserAssignments();
+    }
+  }, [user]);
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Submitted Assignments</h2>
+      <h2 className="text-2xl font-bold mb-4">My Submitted Assignments</h2>
 
       {assignments.length > 0 ? (
         <div className="overflow-x-auto">
@@ -38,10 +38,10 @@ const SubmittedAssignments = () => {
               <tr className="bg-gray-200">
                 <th className="border p-2">Id</th>
                 <th className="border p-2">Title</th>
-                <th className="border p-2">Examinee Name</th>
                 <th className="border p-2">Total Marks</th>
+                <th className="border p-2">Obtained Marks</th>
                 <th className="border p-2">Status</th>
-                <th className="border p-2">Action</th>
+                <th className="border p-2">Feedback</th>
               </tr>
             </thead>
             <tbody>
@@ -49,16 +49,15 @@ const SubmittedAssignments = () => {
                 <tr key={assignment._id} className="hover:bg-gray-100">
                   <td className="border p-2">{index + 1}</td>
                   <td className="border p-2">{assignment.title}</td>
-                  <td className="border p-2">{assignment.userEmail}</td>
                   <td className="border p-2">{assignment.totalMarks}</td>
-                  <td className="border p-2 text-red-500 font-semibold">{assignment.status}</td>
-                  <td className="border p-2">
-                    <button
-                      onClick={() => navigate(`/give-marks/${assignment._id}`)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded"
-                    >
-                      Give Mark
-                    </button>
+                  <td className="border p-2 text-blue-500 font-semibold">
+                    {assignment.obtainedMarks ?? "Pending"}
+                  </td>
+                  <td className="border p-2 text-red-500 font-semibold">
+                    {assignment.status}
+                  </td>
+                  <td className="border p-2 text-green-600">
+                    {assignment.feedback || "No feedback yet"}
                   </td>
                 </tr>
               ))}
@@ -72,4 +71,4 @@ const SubmittedAssignments = () => {
   );
 };
 
-export default SubmittedAssignments;
+export default MyAssignments;
