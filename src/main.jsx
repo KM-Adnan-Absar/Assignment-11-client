@@ -19,6 +19,7 @@ import {
 } from "react-router-dom";
 import GiveMarks from './pages/GiveMarks';
 import AssignmentCard from './pages/AssignmentCard';
+import UpdateAssignmentPage from './pages/UpdateAssignmentPage';
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
        {
         path: '/assignmentCard',
         element: <AssignmentCard></AssignmentCard>
+       },
+       {
+        path: '/update-assignment/:id',
+        element: <UpdateAssignmentPage></UpdateAssignmentPage>
        },
        {
         path: '/pendingAssignment',

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import AssignmentCard from "./AssignmentCard";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AssignmentsPage = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const AssignmentsPage = () => {
   const [marks, setMarks] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
-
+const navigate = useNavigate()
   // Fetch assignments
   useEffect(() => {
     fetch("http://localhost:3000/assignments")
@@ -64,8 +65,25 @@ const AssignmentsPage = () => {
 
       const data = await response.json();
       if (data.success) {
-        Swal.fire("Deleted!", "Assignment deleted successfully.", "success");
-        setAssignments(assignments.filter((assignment) => assignment._id !== id));
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setAssignments(assignments.filter((assignment) => assignment._id !== id));
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          }
+        });
+        
       } else {
         Swal.fire("Error!", data.message, "error");
       }
@@ -73,6 +91,8 @@ const AssignmentsPage = () => {
       console.error("Delete error:", error);
     }
   };
+
+  
 
   return (
     <div className="container mx-auto p-5">
@@ -109,7 +129,12 @@ const AssignmentsPage = () => {
       {/* Assignment Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {assignments.map((assignment) => (
-          <AssignmentCard key={assignment._id} assignment={assignment} onDelete={handleDelete} />
+        <AssignmentCard
+        key={assignment._id}
+        assignment={assignment}
+        onDelete={handleDelete}
+        onUpdate={() => navigate(`/update-assignment/${assignment._id}`)}
+      />
         ))}
       </div>
     </div>
