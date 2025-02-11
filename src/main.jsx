@@ -18,6 +18,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import GiveMarks from './pages/GiveMarks';
+import AssignmentCard from './pages/AssignmentCard';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
        {
         path: '/assignmentPage',
         element: <AssignmentsPage></AssignmentsPage>
+       },
+       {
+        path: '/assignmentCard',
+        element: <AssignmentCard></AssignmentCard>
        },
        {
         path: '/pendingAssignment',
