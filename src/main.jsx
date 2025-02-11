@@ -20,6 +20,7 @@ import {
 import GiveMarks from './pages/GiveMarks';
 import AssignmentCard from './pages/AssignmentCard';
 import UpdateAssignmentPage from './pages/UpdateAssignmentPage';
+import AssignmentDetails from './pages/AssignmentDetails';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
         path: '/update-assignment/:id',
         element: <UpdateAssignmentPage></UpdateAssignmentPage>
        },
+{
+  path: '/assignment/:id',
+  element: <PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>
+},
+
        {
         path: '/pendingAssignment',
         element: <PrivateRoute><PendingAssignment></PendingAssignment></PrivateRoute>

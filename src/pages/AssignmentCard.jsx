@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const AssignmentCard = ({ assignment, onDelete, onUpdate }) => {
+  const navigate = useNavigate()
   return (
     <div className="bg-white shadow-lg p-4 rounded-lg flex flex-col">
-      <img src={assignment.thumbnail} alt={assignment.title} className="w-full h-40 object-cover rounded-md" />
+      <img src={assignment.thumbnail} alt={assignment.title} className="w-40 h-40 object-cover rounded-md" />
       <h2 className="text-lg font-bold mt-2">{assignment.title}</h2>
       <p className="text-sm text-gray-500">Marks: {assignment.marks}</p>
       <p className="text-sm text-gray-500">Difficulty: {assignment.difficulty}</p>
@@ -20,7 +23,12 @@ const AssignmentCard = ({ assignment, onDelete, onUpdate }) => {
         >
           Delete
         </button>
-        <button className="bg-green-500 text-white px-3 py-1 rounded">View</button>
+        <button
+          className="bg-green-500 text-white px-3 py-1 rounded"
+          onClick={() => navigate(`/assignment/${assignment._id}`)}
+        >
+          View
+        </button>
       </div>
     </div>
   );
