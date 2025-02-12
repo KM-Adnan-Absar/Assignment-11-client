@@ -15,7 +15,7 @@ const UpdateAssignmentPage = () => {
   const [difficulty, setDifficulty] = useState("easy");
 
 useEffect(() => {
-  fetch(`http://localhost:3000/assignments/${id}`)
+  fetch(`https://assignment-11-server-orcin-rho.vercel.app/assignments/${id}`)
     .then((res) => res.json())
     .then((data) => {
       console.log("Fetched assignment data:", data); // Check the response data
@@ -44,7 +44,7 @@ useEffect(() => {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/updateAssignment/${id}?email=${user.email}`, {
+      const response = await fetch(`https://assignment-11-server-orcin-rho.vercel.app/updateAssignment/${id}?email=${user.email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

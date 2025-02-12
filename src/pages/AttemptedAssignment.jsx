@@ -8,7 +8,7 @@ const MyAssignments = () => {
   useEffect(() => {
     const fetchUserAssignments = async () => {
       try {
-        const response = await fetch("http://localhost:3000/submitAssignment");
+        const response = await fetch("https://assignment-11-server-orcin-rho.vercel.app/submitAssignment");
         const data = await response.json();
 
         // Filter assignments submitted by the logged-in user

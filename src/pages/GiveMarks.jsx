@@ -13,7 +13,7 @@ const GiveMarks = () => {
   useEffect(() => {
     const fetchAssignmentDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/submitAssignment/${id}`);
+        const response = await fetch(`https://assignment-11-server-orcin-rho.vercel.app/submitAssignment/${id}`);
         const data = await response.json();
         setAssignment(data);
       } catch (error) {
@@ -33,7 +33,7 @@ const GiveMarks = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/updateAssignment/${id}`, {
+      const response = await fetch(`https://assignment-11-server-orcin-rho.vercel.app/updateAssignment/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
+  }
 
 
-}
+
+  
+ 

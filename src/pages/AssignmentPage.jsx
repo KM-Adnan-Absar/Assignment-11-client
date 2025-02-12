@@ -12,9 +12,10 @@ const AssignmentsPage = () => {
   const [thumbnail, setThumbnail] = useState("");
   const [difficulty, setDifficulty] = useState("easy");
 const navigate = useNavigate()
+
   // Fetch assignments
   useEffect(() => {
-    fetch("http://localhost:3000/assignments")
+    fetch("https://assignment-11-server-orcin-rho.vercel.app/assignments")
       .then((res) => res.json())
       .then((data) => setAssignments(data))
       .catch((error) => console.error("Error:", error));
@@ -35,7 +36,7 @@ const navigate = useNavigate()
     };
 
     try {
-      const response = await fetch("http://localhost:3000/create-assignment", {
+      const response = await fetch("https://assignment-11-server-orcin-rho.vercel.app/create-assignment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,9 +46,9 @@ const navigate = useNavigate()
 
       if (response.ok) {
         Swal.fire("Success!", "Assignment Created Successfully!", "success");
-        e.target.reset(); // Reset form
+        e.target.reset(); 
         // Fetch the updated assignments list
-        fetch("http://localhost:3000/assignments")
+        fetch("https://assignment-11-server-orcin-rho.vercel.app/assignments")
           .then((res) => res.json())
           .then((data) => setAssignments(data));
       }
@@ -59,7 +60,7 @@ const navigate = useNavigate()
   // Handle Delete Assignment
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/assignments/${id}?email=${user.email}`, {
+      const response = await fetch(`https://assignment-11-server-orcin-rho.vercel.app/assignments/${id}?email=${user.email}`, {
         method: "DELETE",
       });
 

@@ -22,7 +22,7 @@ const SubmissionModal = ({ assignmentId, onClose }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/submit-assignment", {
+      const response = await fetch("https://assignment-11-server-orcin-rho.vercel.app/submit-assignment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submissionData),

@@ -22,7 +22,7 @@ const CreateAssignment = () => {
       marks,
       thumbnail,
       difficulty,
-      dueDate: dueDate.toISOString(), // Convert to standard format
+      dueDate: dueDate.toISOString(), 
       createdBy: {
         name: user?.displayName || "Anonymous",
         email: user?.email || "No Email",
@@ -30,7 +30,7 @@ const CreateAssignment = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/create-assignment", {
+      const response = await fetch("https://assignment-11-server-orcin-rho.vercel.app/create-assignment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const CreateAssignment = () => {
 
       if (response.ok) {
         Swal.fire("Success!", "Assignment Created Successfully!", "success");
-        e.target.reset(); // Reset form
+        e.target.reset(); 
       }
     } catch (error) {
       console.error("Error creating assignment:", error);

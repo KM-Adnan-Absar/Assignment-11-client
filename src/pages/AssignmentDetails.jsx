@@ -10,8 +10,9 @@ const AssignmentDetails = () => {
   const [assignment, setAssignment] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+//   View Assignment 
   useEffect(() => {
-    fetch(`http://localhost:3000/assignments/${id}`)
+    fetch(`https://assignment-11-server-orcin-rho.vercel.app/assignments/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setAssignment(data);

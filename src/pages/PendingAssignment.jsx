@@ -10,7 +10,7 @@ const PendingAssignments = () => {
       if (!user) return;
 
       try {
-        const response = await fetch("http://localhost:3000/submitAssignment");
+        const response = await fetch("https://assignment-11-server-orcin-rho.vercel.app/submitAssignment");
         const data = await response.json();
 
         // Filter only pending assignments (exclude marked assignments)

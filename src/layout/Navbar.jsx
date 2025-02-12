@@ -3,6 +3,7 @@ import img from '../assets/adnan.jpg'
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import logo from '../assets/STUDYHUB.png'
 
 const Navbar = () => {
 const {user , signOutUser} = useContext(AuthContext);
@@ -28,7 +29,7 @@ draggable: true
         <div className="flex-1 mt-2">
 
          <div className="lg:flex items-center">
-         <img className="w-[120px]" src="/src/assets/STUDYHUB.png" alt="" />
+         <img className="w-[120px]" src={logo} alt="" />
          <a className=" font-bold text-2xl -ml-8 text-blue-950 hover:text-blue-500">StudyHub</a>
         </div>
         </div>
