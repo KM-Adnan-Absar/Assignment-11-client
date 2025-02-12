@@ -3,7 +3,7 @@
 2. By this project a user can create assignment, take assignment and submit assignment.
 3. When a user logged in show in his profile picture and click the pictire show dropdown menu there show create,submitted and pending assignment.
 4. In this project uses MERN technology , tailwind ,daisyui , etc. library and frame work.
-5. Deploy in the vercel and fireabse.
+5. Deployed in the vercel and fireabse.
 
 
 
